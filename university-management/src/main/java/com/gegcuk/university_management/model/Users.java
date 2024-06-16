@@ -1,17 +1,15 @@
 package com.gegcuk.university_management.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
-public class User {
-    
+public class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
@@ -21,10 +19,9 @@ public class User {
     private byte[] password;
     private String profilePicture;
     private String role;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String location;
     private String contactInfo;
-
 
     public int getUserId() {
         return this.userId;
@@ -74,11 +71,11 @@ public class User {
         this.role = role;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return this.birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -97,6 +94,5 @@ public class User {
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
     }
-
 
 }
