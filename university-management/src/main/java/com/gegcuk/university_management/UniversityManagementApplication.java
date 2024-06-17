@@ -5,7 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.gegcuk.university_management.model.Achievements;
+import com.gegcuk.university_management.model.Achievement;
+import com.gegcuk.university_management.model.User;
 import com.gegcuk.university_management.repository.AchievementRepository;
 import com.gegcuk.university_management.repository.UserRepository;
 
@@ -24,21 +25,19 @@ public class UniversityManagementApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		// Create a new user
-		// Users user = new Users();
-		// user.setFullName("John Doe 4");
-		// user.setEmail("john.doe4@example.com");
-		// user.setPassword("password".getBytes()); // In a real application, ensure passwords are hashed
-		// user.setRole("student");
+		User user = new User();
+		user.setFullName("John Doe 7");
+		user.setEmail("john.doe7@example.com");
+		user.setPassword("password".getBytes()); // In a real application, ensure passwords are hashed
+		user.setRole("student");
 
-		Achievements achievment = new Achievements();
-		achievment.setDescription("First try");
-		achievment.setTitle("First achievment");
-		achievment.setUser_id(1);
+		Achievement achievement = new Achievement();
+		achievement.setDescription("First try");
+		achievement.setTitle("First achievment");
 
 		// Save the user to the database
-		// userRepository.save(user);
-		achievementRepository.save(achievment);
+		userRepository.save(user);
+		achievementRepository.save(achievement);
 		
 
 		// Fetch the user from the database

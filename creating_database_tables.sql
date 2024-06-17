@@ -191,13 +191,10 @@ create table if not exists  Skills (
     foreign key (user_id) references users(user_id)
 );
 
-create table if not exists Achievements (
-    achievement_id int auto_increment primary key,
-    user_id int,
-    title varchar(255),
-    description text,
-    date date,
-    foreign key (user_id) references users(user_id)
+CREATE TABLE IF NOT EXISTS Achievements (
+    achievement_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT
 );
 
 create table if not exists Specializations (
@@ -236,8 +233,14 @@ create table if not exists StudentSpecializations (
     foreign key (specialization_id) references specializations(specialization_id)
 );
 
-
-
+CREATE TABLE IF NOT EXISTS userachievements (
+    user_id INT,
+    achievement_id INT,
+    date DATE,
+    PRIMARY KEY (user_id, achievement_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (achievement_id) REFERENCES Achievements(achievement_id)
+);
 
 
 

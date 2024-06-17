@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gegcuk.university_management.model.Users;
+import com.gegcuk.university_management.model.User;
 import com.gegcuk.university_management.service.UserService;
 
 @RestController
@@ -22,22 +22,22 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<Users> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable int id){
+    public User getUserById(@PathVariable int id){
         return userService.getUserById(id);
     }
 
     @PostMapping
-    public Users createUser(@RequestBody Users user){
+    public User createUser(@RequestBody User user){
         return userService.saveUser(user);
     }
 
     @PutMapping("/{id}")
-    public Users updateUser(@PathVariable int id, @RequestBody Users user){
+    public User updateUser(@PathVariable int id, @RequestBody User user){
         user.setUserId(id);
         return userService.updateUser(user);
     }
