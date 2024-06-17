@@ -94,5 +94,4 @@ public class Users {
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
     }
-
 }
