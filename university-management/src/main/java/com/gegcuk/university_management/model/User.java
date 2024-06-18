@@ -2,6 +2,7 @@ package com.gegcuk.university_management.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,8 @@ public class User {
     private int userId;
 
     private String fullName;
+
+    @Column(unique=true)
     private String email;
     private byte[] password;
     private String profilePicture;

@@ -5,18 +5,31 @@
 </head>
 <body>
     <h1>User List</h1>
+
+    <!-- Display success message -->
+    <div th:if="${successMessage}" style="color: green;">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <!-- Display error message -->
+    <div th:if="${errorMessage}" style="color: red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
     <table>
         <tr>
             <th>ID</th>
             <th>Full Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Birth Date</th>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.userId}"></td>
             <td th:text="${user.fullName}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.role}"></td>
+            <td th:text="${user.birthDate}"></td>
         </tr>
     </table>
 
@@ -41,6 +54,10 @@
                 <option value="teacher">Teacher</option>
                 <option value="admin">Admin</option>
             </select>
+        </div>
+        <div>
+            <label for="birthDate">Birth Date:</label>
+            <input type="date" id="birthDate" th:field="*{birthDate}" />
         </div>
         <div>
             <button type="submit">Add User</button>

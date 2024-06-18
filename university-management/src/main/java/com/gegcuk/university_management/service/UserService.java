@@ -3,6 +3,7 @@ package com.gegcuk.university_management.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.gegcuk.university_management.model.User;
@@ -13,7 +14,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -21,15 +22,23 @@ public class UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-    public User saveUser(User user){
-        return userRepository.save(user);
+    public User saveUser(User user) {
+        try {
+            return userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Email already exists");
+        }
     }
 
-    public User updateUser (User user){
-        return userRepository.save(user);
+    public User updateUser(User user) {
+        try {
+            return userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Email already exists");
+        }
     }
 
-    public void deleteUser(int userId){
+    public void deleteUser(int userId) {
         userRepository.deleteById(userId);
     }
 
