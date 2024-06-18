@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.fullName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.role}"></td>
+        </tr>
+    </table>
+
+    <h2>Add User</h2>
+    <form action="#" th:action="@{/web/users}" th:object="${user}" method="post">
+        <div>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" th:field="*{fullName}" />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" />
+        </div>
+        <div>
+            <label for="role">Role:</label>
+            <select id="role" th:field="*{role}">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Add User</button>
+        </div>
+    </form>
+</body>
+</html>
