@@ -2,66 +2,83 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Users</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <h1>User List</h1>
+    <div class="container">
+        <h1 class="my-4">User List</h1>
 
-    <!-- Display success message -->
-    <div th:if="${successMessage}" style="color: green;">
-        <p th:text="${successMessage}"></p>
+        <!-- Display success message -->
+        <div th:if="${successMessage}" class="alert alert-success message" role="alert">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <!-- Display error message -->
+        <div th:if="${errorMessage}" class="alert alert-danger message" role="alert">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <table class="table table-bordered user-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Birth Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.fullName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td th:text="${user.birthDate}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="my-4">Add User</h2>
+        <form action="#" th:action="@{/web/users}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" th:field="*{fullName}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" th:field="*{role}" class="form-control">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">Birth Date:</label>
+                <input type="date" id="birthDate" th:field="*{birthDate}" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+        </form>
     </div>
 
-    <!-- Display error message -->
-    <div th:if="${errorMessage}" style="color: red;">
-        <p th:text="${errorMessage}"></p>
-    </div>
-
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Birth Date</th>
-        </tr>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.userId}"></td>
-            <td th:text="${user.fullName}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.role}"></td>
-            <td th:text="${user.birthDate}"></td>
-        </tr>
-    </table>
-
-    <h2>Add User</h2>
-    <form action="#" th:action="@{/web/users}" th:object="${user}" method="post">
-        <div>
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" th:field="*{fullName}" />
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}" />
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}" />
-        </div>
-        <div>
-            <label for="role">Role:</label>
-            <select id="role" th:field="*{role}">
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
-        <div>
-            <label for="birthDate">Birth Date:</label>
-            <input type="date" id="birthDate" th:field="*{birthDate}" />
-        </div>
-        <div>
-            <button type="submit">Add User</button>
-        </div>
-    </form>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/scripts.js"></script>
 </body>
 </html>

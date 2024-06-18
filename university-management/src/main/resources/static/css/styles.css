@@ -1,0 +1,11 @@
+.message{
+    margin: 20px 0;
+}
+
+.form-group label{
+    font-weight: bold;
+}
+
+.user-table th, .user-table td {
+    text-align: center;
+}
